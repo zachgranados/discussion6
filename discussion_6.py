@@ -57,7 +57,7 @@ class FireReader():
 
         
         for i in self.raw_data:
-            
+
             # breaks the loop for the header
             if i.startswith('month'):
                 continue
@@ -100,7 +100,25 @@ class FireReader():
         You should replace 'dec' with the correct month.
         """
 
-        pass
+        tracker = {}
+
+        for current_month in self.data_dict['month']:
+            if current_month not in tracker:
+                tracker[current_month] = 1
+            else:
+                tracker[current_month] += 1
+        
+        max = 0
+        key = ""
+        for month in tracker:
+            if tracker[month] > max:
+                max = tracker[month]
+                key = month
+            else:
+                continue
+
+        return "The month with the most fires was " + key + "."
+            
 
     def temp_of_smallest(self):
         """
@@ -114,7 +132,9 @@ class FireReader():
         this is ok.
         """
 
-        pass
+  
+
+
 
 
 class TestFireReader(unittest.TestCase): # You should not need to modify this class.
