@@ -54,10 +54,16 @@ class FireReader():
         """
 
         # iterate through each row of the data
-        for i in self.raw_data:
 
-            # split up the row by column
-            seperated = i.split(' ')
+        
+        for i in self.raw_data:
+            
+            # breaks the loop for the header
+            if i.startswith('month'):
+                continue
+
+            # split up the row by comma
+            seperated = i.split(',')
 
             # map each part of the row to the correct column
             self.data_dict['month'].append(seperated[0])
@@ -72,8 +78,15 @@ class FireReader():
         the smallest value.
 
         """
+        min = self.data_dict['area'][0]
 
-        pass
+        for areas in self.data_dict['area']:
+            if areas < min:
+                min = areas
+        return min
+
+
+       
 
 
     def most_fires_month(self):
