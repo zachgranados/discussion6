@@ -131,6 +131,11 @@ class FireReader():
         the FIRST index that matches your requested value, but for our purposes
         this is ok.
         """
+        self.smallest_fire()
+        
+        index = self.data_dict['area'].index(self.smallest_fire())
+
+        return self.data_dict['temp'][index]
 
   
 
